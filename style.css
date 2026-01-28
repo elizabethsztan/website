@@ -44,6 +44,101 @@ a:hover {
   padding: 20px;
 }
 
+.content-wrapper {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.content-wrapper .content-box {
+  flex: 1;
+  margin: 0;
+}
+
+.sidebar {
+  width: 140px;
+  flex-shrink: 0;
+}
+
+.sidebar-box {
+  border: 2px dashed var(--red);
+  background: rgba(10, 10, 40, 0.9);
+  padding: 15px;
+  box-shadow: 0 0 15px var(--red);
+  text-align: left;
+}
+
+.sidebar-box h3 {
+  color: var(--red);
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  margin: 0 0 10px 0;
+  text-align: left;
+  border-bottom: 1px dashed var(--red);
+  padding-bottom: 8px;
+}
+
+.sidebar-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-box li {
+  margin: 8px 0;
+}
+
+.sidebar-box a {
+  color: var(--lightblue);
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: block;
+  transition: color 0.2s;
+  text-align: left;
+}
+
+.sidebar-box a:hover {
+  color: white;
+}
+
+.sidebar-box + .sidebar-box {
+  margin-top: 15px;
+}
+
+.visitor-box .visitor-count {
+  background: black;
+  border: 2px inset #888;
+  padding: 8px;
+  text-align: center;
+  font-family: 'VT323', monospace;
+  font-size: 1.2rem;
+  color: var(--lightblue);
+  letter-spacing: 2px;
+}
+
+@media (max-width: 600px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .sidebar-box ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 20px;
+  }
+
+  .sidebar-box li {
+    margin: 0;
+  }
+}
+
 .main-box {
   border: 3px dashed var(--red);
   background: rgba(10, 10, 40, 0.9);
@@ -81,6 +176,7 @@ h1 {
   padding: 5px;
   font-weight: bold;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .marquee span {
@@ -193,4 +289,34 @@ img.badge {
 
 .content-box h2:not(:first-child) {
   margin-top: 25px;
+}
+
+.about-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.profile-pic {
+  flex-shrink: 0;
+  background: rgba(136, 204, 255, 0.5);
+  padding: 8px;
+  border-radius: 4px;
+  width: 100px;
+  height: 170px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px var(--lightblue);
+}
+
+.profile-pic img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  image-rendering: pixelated;
+}
+
+.about-content p {
+  margin: 0;
 }
