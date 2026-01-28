@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recipe Book</title>
+  <link rel="stylesheet" href="recipes.css" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+</head>
+<body>
+  <div class="hint" id="hint">Press SPACE to open</div>
+
+  <div class="book-container">
+    <div class="book" id="book">
+      <!-- Book Cover (visible when closed) -->
+      <div class="book-cover">
+        <div class="cover-spine"></div>
+        <div class="cover-front">
+          <div class="cover-inner">
+            <div class="pixel-border">
+              <div class="cover-icon">&#127859;</div>
+              <h1 class="cover-title">Recipes</h1>
+              <div class="cover-stars">* * *</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Book Pages (visible when open) -->
+      <div class="book-pages">
+        <!-- Page 1: Contents + Porridge -->
+        <div class="page-spread" data-page="1">
+          <div class="page left-page">
+            <div class="page-content">
+              <h2 class="index-title">~ Contents ~</h2>
+              <ul class="recipe-list">
+                <li><span class="recipe-name">Best Porridge</span><span class="dots"></span><span class="page-num">1</span></li>
+                <li><span class="recipe-name">Goats Cheese Pasta</span><span class="dots"></span><span class="page-num">2</span></li>
+              </ul>
+              <div class="page-footer">
+                <a href="index.html" class="back-link">&lt; Back Home</a>
+              </div>
+            </div>
+          </div>
+          <div class="page-spine"></div>
+          <div class="page right-page">
+            <div class="page-content">
+              <div class="recipe-header">
+                <h3 class="recipe-title">Best Porridge</h3>
+              </div>
+              <div class="recipe-columns">
+                <div class="recipe-section">
+                  <h4>Ingredients</h4>
+                  <ul>
+                    <li>45g porridge oats</li>
+                    <li>Oat milk</li>
+                    <li>100g fresh blueberries</li>
+                    <li>150g skyr/greek yoghurt</li>
+                    <li>30g granola</li>
+                    <li>30g peanut butter</li>
+                    <li>5g creatine</li>
+                  </ul>
+                </div>
+                <div class="recipe-section">
+                  <h4>Method</h4>
+                  <ol>
+                    <li>Microwave the porridge oats with half oat milk and half water (eyeball it!) for 3 minutes</li>
+                    <li>Stir and add more water if needed and then continue to microwave for another 1-2 minutes</li>
+                    <li>Mix in the creatine</li>
+                    <li>Add the rest of the toppings</li>
+                    <li>~650 cals/35g protein</li>
+                  </ol>
+                </div>
+              </div>
+              <div class="page-nav">
+                <span></span>
+                <button class="nav-btn" onclick="nextPage()">Next &gt;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Page 2: Goats Cheese Pasta -->
+        <div class="page-spread" data-page="2" style="display: none;">
+          <div class="page left-page">
+            <div class="page-content">
+              <div class="recipe-header">
+                <h3 class="recipe-title">Goats Cheese Pasta</h3>
+              </div>
+              <div class="recipe-columns">
+                <div class="recipe-section">
+                  <h4>Ingredients</h4>
+                  <h3>Pasta sauce</h3>
+                  <ul>
+                    <li>500g fresh pappardells</li>
+                    <li>125g goats cheese</li>
+                    <li>1 sliced bell pepper</li>
+                    <li>1 chopped onion</li>
+                    <li>garlic paste</li>
+                    <li>500g spicy tomato sauce jar</li>
+                    <li>small tin of tomatoes</li>
+                  </ul>
+                  <h3>Toppings</h3>
+                  <ul>
+                    <li>125g chopped goats cheese</li>
+                    <li>20g olive oil</li>
+                    <li>20g honey</li>
+                    <li>Sliced olives</li>
+                    <li>Bag of rocket leaves</li>
+                  </ul>
+                </div>
+                <div class="recipe-section">
+                  <h4>Method</h4>
+                  <ol>
+                    <li>Cook the onion, bell pepper, and garlic</li>
+                    <li>Add the jar of tomato sauce</li>
+                    <li>Start cooking the fresh pasta with salt and olive oil</li>
+                    <li>Add the goats cheese to the pasta sauce</li>
+                    <li>Mix all ingredients from the topppings except the rocket</li>
+                    <li>Once the pasta is cooked, stir in the pasta sauce</li>
+                    <li>Top with rocket</li>
+                    <li>Add the rest of the toppings as a dressing</li>
+                    
+                  </ol>
+                </div>
+              </div>
+              <div class="page-nav">
+                <button class="nav-btn" onclick="prevPage()">&lt; Prev</button>
+                <span></span>
+              </div>
+            </div>
+          </div>
+          <div class="page-spine"></div>
+          <div class="page right-page">
+            <div class="page-content">
+              <div class="empty-page">
+                <p>~ more recipes coming soon ~</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const book = document.getElementById('book');
+    const hint = document.getElementById('hint');
+    const pageSpreads = document.querySelectorAll('.page-spread');
+    let isOpen = false;
+    let currentPage = 1;
+    const totalPages = pageSpreads.length;
+
+    function toggleBook() {
+      isOpen = !isOpen;
+      book.classList.toggle('open', isOpen);
+      updateHint();
+    }
+
+    function updateHint() {
+      if (!isOpen) {
+        hint.textContent = 'Press SPACE to open';
+      } else {
+        hint.textContent = 'Use arrow keys to turn pages';
+      }
+    }
+
+    function showPage(pageNum) {
+      pageSpreads.forEach(spread => {
+        spread.style.display = spread.dataset.page == pageNum ? 'flex' : 'none';
+      });
+      currentPage = pageNum;
+    }
+
+    function nextPage() {
+      if (currentPage < totalPages) {
+        showPage(currentPage + 1);
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        showPage(currentPage - 1);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        toggleBook();
+      } else if (isOpen && e.code === 'ArrowRight') {
+        e.preventDefault();
+        nextPage();
+      } else if (isOpen && e.code === 'ArrowLeft') {
+        e.preventDefault();
+        prevPage();
+      }
+    });
+
+    book.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-btn')) {
+        toggleBook();
+      }
+    });
+  </script>
+</body>
+</html>
