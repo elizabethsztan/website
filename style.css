@@ -119,6 +119,22 @@ hr {
   margin: 0;
 }
 
+.tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-left: 5px;
+  vertical-align: middle;
+  letter-spacing: 0.02em;
+}
+
+.tag-opinion  { background: #fde8cc; color: #a05a00; }
+.tag-aisafety { background: #d4e8fb; color: #1a5a8a; }
+.tag-research { background: #ddf3e4; color: #1a6e3c; }
+.tag-personal { background: #ece8fd; color: #5a3a9e; }
+
 .content-box ol {
   padding-left: 18px;
   margin: 0;
